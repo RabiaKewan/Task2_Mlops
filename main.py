@@ -1,4 +1,4 @@
-class StudentsInMLOps:
+class Student:
     def __init__(self):
         self.total_strength =  0
 
