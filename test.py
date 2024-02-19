@@ -1,5 +1,5 @@
 import pytest
-from main import StudentsInMLOps
+from main import Student
 
 def test_enroll_students():
     students = StudentsInMLOps()
