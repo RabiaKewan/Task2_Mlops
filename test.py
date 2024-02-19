@@ -1,18 +1,17 @@
 import pytest
 from main import StudentsInMLOps
 
-@pytest.fixture
-def students():
-    return StudentsInMLOps()
+def test_enroll_students():
+    students = StudentsInMLOps()
+    students.enrollStudents(7)
+    assert students.getTotalStrength() ==  7
 
-def test_enroll_students(students):
-    students.enrollStudents(5)
-    assert students.getTotalStrength() == 5
+def test_drop_students():
+    students = StudentsInMLOps()
+    students.enrollStudents(200)
+    students.dropStudents(100)
+    assert students.getTotalStrength() ==  100
 
-def test_drop_students(students):
-    students.enrollStudents(10)
-    students.dropStudents(5)
-    assert students.getTotalStrength() == 5
-
-def test_get_class_name(students):
-    assert students.getClassName() == 'MLOps'
+def test_get_class_name():
+    students = StudentsInMLOps()
+    assert students.getClassName() == 'Student'
