@@ -1,5 +1,5 @@
-class Student:
-    def _init_(self):
+class StudentsInMLOps:
+    def __init__(self):
         self.total_strength =  0
 
     def enrollStudents(self, num_students):
@@ -12,4 +12,4 @@ class Student:
         return self.total_strength
 
     def getClassName(self):
-        return self._class.name_
+        return self.__class__.__name__
