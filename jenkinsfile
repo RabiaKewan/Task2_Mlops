@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                // Run tests using pytest (replace with your test command)
+                // Run tests using pytest
                 sh 'pytest'
             }
         }
@@ -26,12 +26,23 @@ pipeline {
                 sh 'make build'
             }
         }
-        stage('Deploy') {
+stage('Deploy') {
             steps {
-                // Deploy the application (replace with your deployment command)
-                sh 'make deploy'
+                script {
+                    // Deploying step (checking the branch name)
+                    def branchName = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+                    if (branchName == 'main') {
+                        echo 'Deploying to production'
+                        // Deployment command for production
+                        sh 'make deploy-production'
+                    } else {
+                        echo 'Deploying to UAT'
+                        // Deployment command for UAT
+                        sh 'make deploy-uat'
+                    }
+                }
             }
-        }
     
+}
 }
 }
